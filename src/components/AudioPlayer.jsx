@@ -13,7 +13,20 @@ export default function AudioPlayer() {
       setPlaying(false);
     } else {
       try {
+        audio.volume = 0; // démarre à zéro
         await audio.play();
+
+        // Animation fade-in
+        let vol = 0;
+        const fade = setInterval(() => {
+          if (vol < 0.3) {
+            vol += 0.02;
+            audio.volume = vol;
+          } else {
+            clearInterval(fade);
+          }
+        }, 150);
+
         setPlaying(true);
       } catch (err) {
         console.error("Erreur lecture audio :", err);
@@ -23,7 +36,6 @@ export default function AudioPlayer() {
 
   return (
     <>
-      {/* ⚠️ Vérifie que ton fichier est bien dans public/audio/ */}
       <audio ref={audioRef} src="/audio/relaxing-piano-310597.mp3" loop />
       <button className="audio-btn" onClick={toggle}>
         {playing ? "⏸ Stop Musique" : "▶ Jouer Musique"}
