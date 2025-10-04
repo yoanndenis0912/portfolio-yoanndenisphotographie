@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 
 /**
- * Lecteur audio discret (autoplay 30%, loop)
- * Remplace la source par ton propre fichier si besoin
+ * 🎵 Lecteur audio discret avec volume progressif (fade-in)
+ * - Autoplay au clic
+ * - Boucle en continu
  */
+
 export default function AudioPlayer() {
   const audioRef = useRef(null);
   const [muted, setMuted] = useState(false);
@@ -12,22 +14,39 @@ export default function AudioPlayer() {
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
-    audio.volume = 0.3;
+
+    audio.volume = 0; // Démarre silencieux pour le fade-in
+    audio.loop = true;
+
+    const fadeIn = () => {
+      let volume = 0;
+      const fade = setInterval(() => {
+        if (volume < 0.3) {
+          volume += 0.02;
+          audio.volume = volume;
+        } else {
+          clearInterval(fade);
+        }
+      }, 150);
+    };
+
     const play = async () => {
       try {
         await audio.play();
+        fadeIn();
         setReady(true);
-      } catch (e) {
-        // Certains navigateurs bloquent l'autoplay : le bouton permettra de lancer
-        setReady(false);
+      } catch {
+        setReady(false); // Autoplay bloqué : bouton servira à activer le son
       }
     };
+
     play();
   }, []);
 
   const toggle = async () => {
     const audio = audioRef.current;
     if (!audio) return;
+
     if (audio.paused) {
       await audio.play();
       setMuted(false);
@@ -39,8 +58,12 @@ export default function AudioPlayer() {
 
   return (
     <>
-      {/* URL publique d'un sample libre. Remplace par ton propre fichier si tu veux */}
-      <audio ref={audioRef} src="/audio/relaxing-piano-310597.mp3" loop />
+      {/* ✅ Remplace ici par ton propre fichier mp3 */}
+      <audio
+        ref={audioRef}
+        src="/audio/relaxing-piano-310597.mp3"
+        loop
+      />
       <button className="audio-btn" onClick={toggle}>
         {muted || !ready ? "▶ Musique" : "⏸ Musique"}
       </button>
