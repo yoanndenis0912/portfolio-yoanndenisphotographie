@@ -40,7 +40,7 @@ export default function AudioPlayer() {
   return (
     <>
       {/* URL publique d'un sample libre. Remplace par ton propre fichier si tu veux */}
-      <audio ref={audioRef} src="https://www2.cs.uic.edu/~i101/SoundFiles/StarWars60.wav" loop />
+      <audio ref={audioRef} src="src/assets/audio/inspiring-piano-ambient-125573.mp3" loop />
       <button className="audio-btn" onClick={toggle}>
         {muted || !ready ? "▶ Musique" : "⏸ Musique"}
       </button>
