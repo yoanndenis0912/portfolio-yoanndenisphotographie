@@ -1,45 +1,55 @@
 import { useRef, useState } from "react";
+import "./AudioPlayer.css";
+
+const AUDIO_SRC = "/audio/relaxing-piano-310597.mp3";
 
 export default function AudioPlayer() {
   const audioRef = useRef(null);
-  const [playing, setPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
 
-  const toggle = async () => {
+  const fadeAudio = (targetVol, duration = 1000) => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    const step = (targetVol - audio.volume) / (duration / 50);
+    const interval = setInterval(() => {
+      let newVol = audio.volume + step;
+      if ((step > 0 && newVol >= targetVol) || (step < 0 && newVol <= targetVol)) {
+        newVol = targetVol;
+        clearInterval(interval);
+        if (newVol === 0 && !isPlaying) audio.pause();
+      }
+      audio.volume = Math.max(0, Math.min(1, newVol));
+    }, 50);
+  };
+
+  const togglePlay = async () => {
     const audio = audioRef.current;
     if (!audio) return;
 
-    if (playing) {
-      audio.pause();
-      setPlaying(false);
+    if (isPlaying) {
+      fadeAudio(0);
+      setIsPlaying(false);
     } else {
       try {
-        audio.volume = 0; // démarre à zéro
+        audio.volume = 0;
         await audio.play();
-
-        // Animation fade-in
-        let vol = 0;
-        const fade = setInterval(() => {
-          if (vol < 0.3) {
-            vol += 0.02;
-            audio.volume = vol;
-          } else {
-            clearInterval(fade);
-          }
-        }, 150);
-
-        setPlaying(true);
-      } catch (err) {
-        console.error("Erreur lecture audio :", err);
+        fadeAudio(0.3);
+        setIsPlaying(true);
+      } catch (e) {
+        console.warn("Autoplay bloqué, clic requis :", e);
       }
     }
   };
 
   return (
-    <>
-      <audio ref={audioRef} src="/audio/relaxing-piano-310597.mp3" loop />
-      <button className="audio-btn" onClick={toggle}>
-        {playing ? "⏸ Stop Musique" : "▶ Jouer Musique"}
+    <div className="audio-container">
+      <audio ref={audioRef} src={AUDIO_SRC} preload="auto" loop />
+      <button
+        onClick={togglePlay}
+        className={`audio-btn ${isPlaying ? "playing" : "paused"}`}
+      >
+        {isPlaying ? "⏸︎" : "▶︎"}
       </button>
-    </>
+    </div>
   );
 }

@@ -1,4 +1,4 @@
-import heroImg from "../assets/photos/accueil.jpg";
+import heroImg from "/photo/accueil.jpg";
 import { Link } from "react-router-dom";
 
 export default function Home() {

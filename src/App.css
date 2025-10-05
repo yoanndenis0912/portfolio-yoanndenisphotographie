@@ -89,3 +89,222 @@ a:hover { opacity: .75; }
   background: rgba(255, 255, 255, 1);
   transform: scale(1.05);
 }
+
+/* Container audio */
+.audio-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+/* Bouton musique */
+.audio-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 50px;
+  padding: 8px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  transition: all 0.3s ease;
+}
+
+.audio-btn:hover {
+  background: rgba(255, 255, 255, 0.35);
+  transform: scale(1.05);
+  color: #000;
+}
+
+/* Égaliseur intégré au bouton */
+.equalizer-inline {
+  display: flex;
+  gap: 3px;
+  height: 14px;
+  align-items: flex-end;
+}
+
+.equalizer-inline span {
+  display: block;
+  width: 3px;
+  background: white;
+  animation: bounce 1s infinite ease-in-out;
+}
+
+.equalizer-inline span:nth-child(1) {
+  animation-delay: 0s;
+  height: 30%;
+}
+.equalizer-inline span:nth-child(2) {
+  animation-delay: 0.2s;
+  height: 60%;
+}
+.equalizer-inline span:nth-child(3) {
+  animation-delay: 0.4s;
+  height: 90%;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: scaleY(0.4); }
+  50% { transform: scaleY(1.2); }
+}
+/* ============================= */
+/*     GALLERY GRID STYLING      */
+/* ============================= */
+
+.mosaic {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.2rem;
+  padding: 2rem;
+  justify-items: center;
+}
+
+.mosaic-item {
+  width: 100%;
+  max-width: 400px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  z-index: 0;
+}
+
+.mosaic-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+  pointer-events: none; /* ✅ permet de cliquer sur le conteneur, pas l'image */
+}
+
+.mosaic-item:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.project-page {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding-top: 2rem;
+}
+/* --- Lightbox Stylée --- */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  overflow: hidden;
+}
+
+.lightbox-img {
+  max-width: 90%;
+  max-height: 80vh;
+  border-radius: 12px;
+  box-shadow: 0 0 30px rgba(0,0,0,0.5);
+  transition: transform 0.3s ease;
+}
+
+.lightbox-img:hover {
+  transform: scale(1.02);
+}
+
+.lightbox-counter {
+  position: absolute;
+  bottom: 30px;
+  color: white;
+  font-size: 1rem;
+  opacity: 0.8;
+}
+
+/* --- Fondu --- */
+.fade-in {
+  opacity: 1;
+  transition: opacity 0.5s ease-in;
+}
+.fade-out {
+  opacity: 0;
+  transition: opacity 0.3s ease-out;
+}
+
+/* --- Boutons navigation --- */
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.nav-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.nav-btn.left {
+  left: 50px;
+}
+.nav-btn.right {
+  right: 50px;
+}
+
+.arrow {
+  pointer-events: none;
+  user-select: none;
+}
+
+/* --- Bouton fermeture --- */
+.close-btn {
+  position: absolute;
+  top: 30px;
+  right: 40px;
+  font-size: 2rem;
+  background: none;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.close-btn:hover {
+  transform: scale(1.2);
+  color: #ff4c4c;
+}
+
+/* --- Miniatures --- */
+.mosaic {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 15px;
+  padding: 30px;
+}
+
+.mosaic-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  transition: transform 0.3s, opacity 0.3s;
+  cursor: pointer;
+}
+
+.mosaic-item img:hover {
+  transform: scale(1.05);
+  opacity: 0.8;
+}

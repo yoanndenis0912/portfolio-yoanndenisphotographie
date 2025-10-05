@@ -8,7 +8,9 @@ export default function App() {
   return (
     <Router>
       <Navbar />
-      <AnimatedRoutes />
+      <main>
+        <AnimatedRoutes />
+      </main>
       <AudioPlayer />
     </Router>
   );
