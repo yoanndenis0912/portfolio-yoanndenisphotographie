@@ -1,0 +1,68 @@
+.loader-overlay {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-family: "Playfair Display", serif;
+  z-index: 4000;
+  opacity: 1;
+  transition:
+    opacity 3.5s ease,
+    background-color 4s ease; /* transition fond noir → gris doux */
+}
+
+/* Fondu croisé vers Hero */
+.loader-overlay.fade-out {
+  opacity: 0;
+  background: radial-gradient(circle at center, #222 0%, #000 100%);
+  pointer-events: none;
+}
+
+/* Apparition progressive du texte */
+.loader-text {
+  text-align: center;
+  opacity: 0;
+  transform: translateY(25px);
+  animation: fadeIn 3s ease forwards 0.8s; /* plus lent, plus fluide */
+}
+
+/* YOANN DENIS */
+.loader-name {
+  font-size: 2.8rem;
+  letter-spacing: 8px;
+  margin: 0;
+  color: #fff;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+  animation: nameGlow 6s ease-in-out infinite alternate;
+}
+
+/* PHOTOGRAPHIE */
+.loader-sub {
+  font-size: 1.2rem;
+  letter-spacing: 6px;
+  margin-top: 10px;
+  color: #dcdcdc;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.25);
+  animation: glow 5s ease-in-out infinite alternate;
+}
+
+/* Fade-in fluide du texte */
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(25px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Lueurs douces */
+@keyframes glow {
+  from { text-shadow: 0 0 10px rgba(255, 255, 255, 0.15); }
+  to { text-shadow: 0 0 25px rgba(255, 255, 255, 0.4); }
+}
+
+@keyframes nameGlow {
+  from { text-shadow: 0 0 8px rgba(255, 255, 255, 0.1); }
+  to { text-shadow: 0 0 20px rgba(255, 255, 255, 0.3); }
+}

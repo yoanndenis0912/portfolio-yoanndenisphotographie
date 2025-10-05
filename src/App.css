@@ -308,3 +308,29 @@ a:hover { opacity: .75; }
   transform: scale(1.05);
   opacity: 0.8;
 }
+/* Transition fluide du contenu principal */
+.app-wrapper {
+  opacity: 0;
+  transform: scale(1.02);
+  transition: opacity 1.8s ease, transform 2s ease;
+}
+
+.app-wrapper.fade-in {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.app-wrapper.fade-out {
+  opacity: 0;
+  transform: scale(1.02);
+}
+
+/* Loader qui s'efface plus lentement */
+.loader {
+  opacity: 1;
+  transition: opacity 2.5s ease;
+}
+
+.loader.fade-out {
+  opacity: 0;
+}
