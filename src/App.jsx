@@ -2,7 +2,6 @@ import React from "react";
 import { BrowserRouter as Router, useLocation } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import AnimatedRoutes from "./router/AnimatedRoutes";
-import AudioPlayer from "./components/AudioPlayer";
 import "./App.css";
 
 function AppContent() {
@@ -17,7 +16,6 @@ function AppContent() {
       <main>
         <AnimatedRoutes />
       </main>
-      <AudioPlayer />
     </div>
   );
 }

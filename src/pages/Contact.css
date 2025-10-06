@@ -1,0 +1,157 @@
+.contact {
+  background-color: #fff;
+  color: #fff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+.contact-title {
+  font-family: "Poppins", sans-serif;
+  font-size: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 40px;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.contact-form label {
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  background: transparent;
+  border: 1px solid #666;
+  color: #fff;
+  padding: 10px;
+  border-radius: 4px;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.95rem;
+  transition: border-color 0.3s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: #fff;
+}
+
+.contact-form button {
+  background: transparent;
+  border: 1px solid #fff;
+  color: #fff;
+  padding: 10px 0;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.contact-form button:hover {
+  background: #fff;
+  color: #000;
+}
+
+.contact-page {
+  color: #000 !important;
+}
+
+/* Force la couleur du texte et des placeholders en noir */
+.contact-page,
+.contact-page input,
+.contact-page textarea,
+.contact-page button {
+  color: #000 !important;
+}
+
+/* Pour les textes d’indication dans les champs */
+.contact-page input::placeholder,
+.contact-page textarea::placeholder {
+  color: #000 !important;
+  opacity: 1;
+}
+
+/* Couleur de fond */
+.contact-page {
+  background-color: #fff;
+  color: #000;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Champs et textes */
+.contact-form input,
+.contact-form textarea,
+.contact-form button {
+  color: #000;
+  border: 1px solid #000;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: #000;
+  opacity: 1;
+}
+
+.contact-form button {
+  background: #000;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.contact-form button:hover {
+  background: #333;
+}
+
+/* Force la couleur noire pour tout le texte de la page contact */
+.contact-page,
+.contact-page * {
+  color: #000 !important;
+}
+
+/* Pour être sûr que les placeholders soient noirs */
+.contact-page input::placeholder,
+.contact-page textarea::placeholder {
+  color: #000 !important;
+  opacity: 1;
+}
+
+.contact-form button {
+  background-color: #000;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-family: inherit;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Effet hover : plus doux et pro */
+.contact-form button:hover {
+  background-color: #333;
+  transform: translateY(-2px);
+}
+
+/* Petit effet de "clic" */
+.contact-form button:active {
+  transform: translateY(0);
+}

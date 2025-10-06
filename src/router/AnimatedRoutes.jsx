@@ -2,7 +2,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import Home from "../pages/Home";
 import Portfolio from "../pages/Portfolio";
-import Category from "../pages/Category";
+import Category from "../pages/Category.jsx";
 import Contact from "../pages/Contact";
 
 const pageTransition = {
@@ -42,7 +42,7 @@ function AnimatedRoutes() {
     </motion.div>
   }
 />
-        />
+        /
         <Route
           path="/contact"
           element={

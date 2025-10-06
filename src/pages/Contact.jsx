@@ -1,46 +1,22 @@
-import React, { useRef, useState } from "react";
-import emailjs from "@emailjs/browser";
+import React from "react";
+import "./Contact.css";
 
 export default function Contact() {
-  const form = useRef();
-  const [status, setStatus] = useState("");
-
-  const sendEmail = (e) => {
-    e.preventDefault();
-    emailjs.sendForm(
-      "service_xxxxx",   // ← Remplace par ton Service ID
-      "template_xxxxx",  // ← Remplace par ton Template ID
-      form.current,
-      "public_xxxxx"     // ← Remplace par ta Public Key
-    )
-    .then(() => {
-      setStatus("Message envoyé !");
-      form.current.reset();
-    }, (err) => {
-      console.error(err);
-      setStatus("Erreur d'envoi, réessaie plus tard.");
-    });
-  };
-
   return (
-    <main className="project-page">
-      <h1 className="center-title">CONTACT</h1>
-      <form ref={form} onSubmit={sendEmail} className="contact-form">
-        <div>
-          <label>Nom</label>
-          <input type="text" name="user_name" required />
-        </div>
-        <div>
-          <label>Email</label>
-          <input type="email" name="user_email" required />
-        </div>
-        <div>
-          <label>Message</label>
-          <textarea name="message" rows="6" required />
-        </div>
+    <section className="contact">
+      <h1 className="contact-title">Contact</h1>
+      <form className="contact-form">
+        <label htmlFor="name">Nom</label>
+        <input type="text" id="name" name="name" placeholder="Votre nom" required />
+
+        <label htmlFor="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="Votre email" required />
+
+        <label htmlFor="message">Message</label>
+        <textarea id="message" name="message" placeholder="Votre message" rows="5" required />
+
         <button type="submit">Envoyer</button>
       </form>
-      {status && <p style={{textAlign:'center'}}>{status}</p>}
-    </main>
+    </section>
   );
 }
