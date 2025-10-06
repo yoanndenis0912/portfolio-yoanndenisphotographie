@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Portfolio.css";
+import { motion } from "framer-motion";
 
 const categories = [
   { title: "Portrait", slug: "portrait", img: "/photo/portrait/portrait1.jpg" },
@@ -10,10 +11,19 @@ const categories = [
 
 export default function Portfolio() {
   return (
-    <section className="portfolio">
+    <motion.section
+      className="portfolio"
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+    >
       <div className="portfolio-grid">
         {categories.map((c) => (
-          <Link key={c.slug} to={`/portfolio/${c.slug}`} className="portfolio-card">
+          <Link
+            key={c.slug}
+            to={`/portfolio/${c.slug}`}
+            className="portfolio-card"
+          >
             <div className="thumb">
               <img src={c.img} alt={c.title} />
             </div>
@@ -21,6 +31,6 @@ export default function Portfolio() {
           </Link>
         ))}
       </div>
-    </section>
+    </motion.section>
   );
 }

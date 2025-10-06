@@ -1,40 +1,95 @@
-import React, { useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import "./Gallery.css";
 
 const Gallery = ({ images }) => {
-  const imgRefs = useRef([]);
+  const [selectedIndex, setSelectedIndex] = useState(null);
+  const [isFading, setIsFading] = useState(false);
 
+  // Fonction d'ouverture du carrousel
+  const openCarousel = (index) => {
+    setSelectedIndex(index);
+  };
+
+  // Fonction de fermeture du carrousel
+  const closeCarousel = () => {
+    setSelectedIndex(null);
+  };
+
+  // Navigation dans le carrousel
+  const nextImage = () => {
+    if (images.length > 1) {
+      setIsFading(true);
+      setTimeout(() => {
+        setSelectedIndex((prevIndex) => (prevIndex + 1) % images.length);
+        setIsFading(false);
+      }, 300);
+    }
+  };
+
+  const prevImage = () => {
+    if (images.length > 1) {
+      setIsFading(true);
+      setTimeout(() => {
+        setSelectedIndex(
+          (prevIndex) => (prevIndex - 1 + images.length) % images.length
+        );
+        setIsFading(false);
+      }, 300);
+    }
+  };
+
+  // Fermer avec la touche Échap
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
-
-    imgRefs.current.forEach((img) => {
-      if (img) observer.observe(img);
-    });
-
-    return () => observer.disconnect();
-  }, []);
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") closeCarousel();
+      if (e.key === "ArrowRight") nextImage();
+      if (e.key === "ArrowLeft") prevImage();
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  });
 
   return (
     <div className="gallery-grid">
-      {images.map((src, index) => (
+      {images.map((img, index) => (
         <img
           key={index}
-          ref={(el) => (imgRefs.current[index] = el)}
-          src={src}
-          alt={`photo-${index}`}
+          src={img}
+          alt={`gallery-${index}`}
           className="gallery-thumb"
+          onClick={() => openCarousel(index)}
         />
       ))}
+
+      {selectedIndex !== null && (
+        <div className="carousel-overlay" onClick={closeCarousel}>
+          <button
+            className="nav-btn left"
+            onClick={(e) => {
+              e.stopPropagation();
+              prevImage();
+            }}
+          >
+            ‹
+          </button>
+
+          <img
+            src={images[selectedIndex]}
+            alt="carousel"
+            className={`carousel-image ${isFading ? "fade" : ""}`}
+          />
+
+          <button
+            className="nav-btn right"
+            onClick={(e) => {
+              e.stopPropagation();
+              nextImage();
+            }}
+          >
+            ›
+          </button>
+        </div>
+      )}
     </div>
   );
 };
