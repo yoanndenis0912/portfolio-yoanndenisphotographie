@@ -1,336 +1,51 @@
-/* Base reset */
-* { box-sizing: border-box; }
-html, body, #root { height: 100%; }
-html, body { margin:0; padding:0; overflow-x:hidden; scroll-behavior:smooth; }
-body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; color:#111; background:#fff; }
-a { color: inherit; text-decoration: none; }
-a:hover { opacity: .75; }
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
 
-/* Navbar */
-.navbar { position: sticky; top:0; z-index:100;
-  display:flex; gap:36px; align-items:center; justify-content:center;
-  padding:14px 24px; background:#fff; border-bottom:1px solid #eee;
-  letter-spacing:2px; text-transform:uppercase; font-size:12px; }
-
-/* Hero */
-.hero { min-height:100vh; background-size:cover; background-position:center;
-  position:relative; overflow:hidden; animation:heroZoom 10s ease forwards; }
-@keyframes heroZoom { from{ transform:scale(1);} to{ transform:scale(1.06);} }
-.hero::before{ content:""; position:absolute; inset:0; background:rgba(0,0,0,.35); z-index:1; }
-.hero-overlay{ position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px;
-  color:#fff; z-index:2; text-align:center; }
-.hero-title{ font-family: 'Playfair Display', serif; font-size: clamp(28px, 6vw, 56px); letter-spacing:3px; text-transform:uppercase; margin:0;}
-.hero-subtitle{ letter-spacing:3px; text-transform:uppercase; font-size:14px; opacity:.95; margin:0 0 10px;}
-.hero-btn{ display:inline-block; padding:10px 14px; border:1px solid #fff; color:#fff; border-radius:6px; font-size:12px; letter-spacing:2px; }
-
-/* Pages */
-.project-page { max-width:1200px; margin:90px auto; padding: 0 24px; }
-.center-title { text-align:center; font-family:'Playfair Display', serif; letter-spacing:3px; }
-
-/* Categories grid */
-.grid { margin-top: 10px; display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 10px; }
-.project { border:1px solid #eee; border-radius:10px; padding: 22px; transition: transform .25s ease; }
-.project:hover { transform: translateY(-2px); }
-.project-title { text-transform:uppercase; letter-spacing:2px; font-size:13px; text-align:center; }
-
-/* Masonry */
-.masonry-grid { column-count: 3; column-gap: 20px; }
-@media (max-width: 1000px) { .masonry-grid { column-count: 2; } }
-@media (max-width: 640px) { .masonry-grid { column-count: 1; } }
-.gallery-img { width: 100%; height: auto; display:block; margin: 0 0 20px; break-inside: avoid; cursor: zoom-in; border-radius: 10px; }
-
-/* Fade-in */
-.fade-in-up { opacity:0; transform: translateY(10px); transition: opacity .6s ease, transform .6s ease; }
-.fade-in-up.visible { opacity:1; transform:none; }
-
-/* Lightbox */
-.lightbox { position: fixed; inset:0; display:none; align-items:center; justify-content:center; background: rgba(10,10,10,.88); z-index: 999; }
-.lightbox.show { display:flex; }
-.lightbox-img { max-width: min(92vw, 1400px); max-height: 88vh; object-fit: contain; border-radius: 8px; }
-.lb-btn { position:absolute; top:50%; transform: translateY(-50%); background: rgba(255,255,255,.15); color:#fff; border: 1px solid rgba(255,255,255,.35); padding:10px 14px; border-radius:8px; cursor:pointer; }
-.lb-prev { left: 24px; } .lb-next { right: 24px; }
-.lb-close { top: 18px; right: 22px; transform:none; }
-.lb-counter { position:absolute; bottom: 24px; left: 50%; transform: translateX(-50%); color:#fff; font-size: 12px; letter-spacing:2px; background: rgba(255,255,255,.1); padding: 6px 10px; border-radius: 18px; border:1px solid rgba(255,255,255,.25); }
-
-/* Contact */
-.contact-form { max-width: 620px; margin: 30px auto; display: grid; gap: 14px; }
-.contact-form label { font-weight: 600; margin-bottom: 6px; display:block; }
-.contact-form input, .contact-form textarea { width:100%; border:1px solid #ccc; border-radius:8px; padding:12px 14px; font-size: 16px; font-family: inherit; }
-.contact-form button { padding: 12px 16px; background:#111; color:#fff; border: none; border-radius: 8px; cursor:pointer; }
-.contact-form button:hover { background:#333; }
-
-/* Audio player button */
-.audio-btn { position: fixed; right: 18px; bottom: 18px; z-index: 1000;
-  background:#111; color:#fff; border:1px solid #444; border-radius: 999px; padding: 10px 14px; font-size: 12px; letter-spacing:1px; }
-/* Thumbnails de catégories */
-.project { display:block; border:1px solid #eee; border-radius:10px; padding:14px; transition: transform .25s ease; }
-.project:hover { transform: translateY(-2px); }
-.project img { width:100%; height:1000px; object-fit:cover; border-radius:8px; display:block; }
-.project-thumb-fallback {
-  width:100%; height:220px; border-radius:8px; display:grid; place-items:center;
-  background:#f5f5f5; color:#777; text-transform:uppercase; letter-spacing:2px; font-size:12px;
-}
-.project-title { margin-top:10px; text-transform:uppercase; letter-spacing:2px; font-size:13px; text-align:center; }
-
-.audio-btn {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: rgba(255, 255, 255, 0.8);
-  border: none;
-  border-radius: 50px;
-  padding: 10px 20px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: all 0.3s ease;
+/* =============================
+   BASE GLOBALE
+============================= */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-.audio-btn:hover {
-  background: rgba(255, 255, 255, 1);
-  transform: scale(1.05);
-}
-
-/* Container audio */
-.audio-container {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 1000;
-}
-
-/* Bouton musique */
-.audio-btn {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(255, 255, 255, 0.2);
-  color: white;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  border-radius: 50px;
-  padding: 8px 16px;
-  font-size: 14px;
-  cursor: pointer;
-  backdrop-filter: blur(6px);
-  transition: all 0.3s ease;
-}
-
-.audio-btn:hover {
-  background: rgba(255, 255, 255, 0.35);
-  transform: scale(1.05);
-  color: #000;
-}
-
-/* Égaliseur intégré au bouton */
-.equalizer-inline {
-  display: flex;
-  gap: 3px;
-  height: 14px;
-  align-items: flex-end;
-}
-
-.equalizer-inline span {
-  display: block;
-  width: 3px;
-  background: white;
-  animation: bounce 1s infinite ease-in-out;
-}
-
-.equalizer-inline span:nth-child(1) {
-  animation-delay: 0s;
-  height: 30%;
-}
-.equalizer-inline span:nth-child(2) {
-  animation-delay: 0.2s;
-  height: 60%;
-}
-.equalizer-inline span:nth-child(3) {
-  animation-delay: 0.4s;
-  height: 90%;
-}
-
-@keyframes bounce {
-  0%, 100% { transform: scaleY(0.4); }
-  50% { transform: scaleY(1.2); }
-}
-/* ============================= */
-/*     GALLERY GRID STYLING      */
-/* ============================= */
-
-.mosaic {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.2rem;
-  padding: 2rem;
-  justify-items: center;
-}
-
-.mosaic-item {
-  width: 100%;
-  max-width: 400px;
-  position: relative;
-  overflow: hidden;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  z-index: 0;
-}
-
-.mosaic-item img {
-  width: 100%;
+html, body {
   height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.4s ease;
-  pointer-events: none; /* ✅ permet de cliquer sur le conteneur, pas l'image */
-}
-
-.mosaic-item:hover {
-  transform: scale(1.03);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-}
-
-.project-page {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding-top: 2rem;
-}
-/* --- Lightbox Stylée --- */
-.lightbox {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.9);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 2000;
-  overflow: hidden;
-}
-
-.lightbox-img {
-  max-width: 90%;
-  max-height: 80vh;
-  border-radius: 12px;
-  box-shadow: 0 0 30px rgba(0,0,0,0.5);
-  transition: transform 0.3s ease;
-}
-
-.lightbox-img:hover {
-  transform: scale(1.02);
-}
-
-.lightbox-counter {
-  position: absolute;
-  bottom: 30px;
-  color: white;
-  font-size: 1rem;
-  opacity: 0.8;
-}
-
-/* --- Fondu --- */
-.fade-in {
-  opacity: 1;
-  transition: opacity 0.5s ease-in;
-}
-.fade-out {
-  opacity: 0;
-  transition: opacity 0.3s ease-out;
-}
-
-/* --- Boutons navigation --- */
-.nav-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.1);
-  border: none;
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  color: white;
-  font-size: 2rem;
-  cursor: pointer;
-  transition: background 0.3s, transform 0.2s;
-}
-
-.nav-btn:hover {
-  background: rgba(255, 255, 255, 0.25);
-  transform: translateY(-50%) scale(1.1);
-}
-
-.nav-btn.left {
-  left: 50px;
-}
-.nav-btn.right {
-  right: 50px;
-}
-
-.arrow {
-  pointer-events: none;
-  user-select: none;
-}
-
-/* --- Bouton fermeture --- */
-.close-btn {
-  position: absolute;
-  top: 30px;
-  right: 40px;
-  font-size: 2rem;
-  background: none;
-  color: white;
-  border: none;
-  cursor: pointer;
-  transition: transform 0.2s ease, color 0.2s ease;
-}
-
-.close-btn:hover {
-  transform: scale(1.2);
-  color: #ff4c4c;
-}
-
-/* --- Miniatures --- */
-.mosaic {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 15px;
-  padding: 30px;
-}
-
-.mosaic-item img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 10px;
-  transition: transform 0.3s, opacity 0.3s;
-  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  background-color: #000; /* fond noir global */
+  color: #fff;
+  overflow-x: hidden;
 }
 
-.mosaic-item img:hover {
-  transform: scale(1.05);
-  opacity: 0.8;
-}
-/* Transition fluide du contenu principal */
-.app-wrapper {
-  opacity: 0;
-  transform: scale(1.02);
-  transition: opacity 1.8s ease, transform 2s ease;
+/* =============================
+   TITRES GLOBAUX (loader + hero)
+============================= */
+:root {
+  --title-size: clamp(44px, 6vw, 60px);
+  --sub-size: clamp(14px, 1.8vw, 18px);
 }
 
-.app-wrapper.fade-in {
-  opacity: 1;
-  transform: scale(1);
+.app-title,
+.hero-title {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: var(--title-size);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin: 0;
+  line-height: 1.1;
+  color: #fff;
 }
 
-.app-wrapper.fade-out {
-  opacity: 0;
-  transform: scale(1.02);
-}
-
-/* Loader qui s'efface plus lentement */
-.loader {
-  opacity: 1;
-  transition: opacity 2.5s ease;
-}
-
-.loader.fade-out {
-  opacity: 0;
+.app-sub,
+.hero-subtitle {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: var(--sub-size);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-top: 12px;
+  opacity: 0.85;
+  color: #fff;
 }

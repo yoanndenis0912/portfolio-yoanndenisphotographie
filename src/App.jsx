@@ -1,40 +1,31 @@
-import { useState, useEffect } from "react";
-import { BrowserRouter as Router } from "react-router-dom";
+import React from "react";
+import { BrowserRouter as Router, useLocation } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import AudioPlayer from "./components/AudioPlayer";
 import AnimatedRoutes from "./router/AnimatedRoutes";
-import Loader from "./components/Loader";
+import AudioPlayer from "./components/AudioPlayer";
 import "./App.css";
 
-export default function App() {
-  const [showLoader, setShowLoader] = useState(true);
-  const [fadeOut, setFadeOut] = useState(false);
+function AppContent() {
+  const location = useLocation();
 
-  useEffect(() => {
-    // Lance le fondu après 3.2s
-    const fadeTimer = setTimeout(() => setFadeOut(true), 4000);
-
-    // Retire complètement le loader après 6s
-    const removeTimer = setTimeout(() => setShowLoader(false), 6000);
-
-    return () => {
-      clearTimeout(fadeTimer);
-      clearTimeout(removeTimer);
-    };
-  }, []);
+  // ✅ Affiche la navbar seulement si on n’est pas sur la page d’accueil
+  const showNavbar = location.pathname !== "/";
 
   return (
-    <Router>
-      <div className={`app-wrapper ${fadeOut ? "fade-in" : "fade-out"}`}>
-        <Navbar />
-        <main>
-          <AnimatedRoutes />
-        </main>
-        <AudioPlayer />
-      </div>
+    <div className="app-wrapper">
+      {showNavbar && <Navbar />}
+      <main>
+        <AnimatedRoutes />
+      </main>
+      <AudioPlayer />
+    </div>
+  );
+}
 
-      {/* Le Loader reste visible au-dessus du Hero */}
-      {showLoader && <Loader fadeOut={fadeOut} />}
+export default function App() {
+  return (
+    <Router>
+      <AppContent />
     </Router>
   );
 }

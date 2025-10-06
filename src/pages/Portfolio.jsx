@@ -1,44 +1,26 @@
+import React from "react";
 import { Link } from "react-router-dom";
-import { galleryData } from "../data/galleryData";
+import "./Portfolio.css";
 
 const categories = [
-  { slug: "portrait", title: "Portrait" },
-  { slug: "food", title: "Food Photography" },
-  { slug: "editorial", title: "Editorial" },
+  { title: "Portrait", slug: "portrait", img: "/photo/portrait/portrait1.jpg" },
+  { title: "Food Photography", slug: "food", img: "/photo/food/food1.jpg" },
+  { title: "Éditorial", slug: "editorial", img: "/photo/editorial/editorial1.jpg" },
 ];
 
 export default function Portfolio() {
   return (
-    <main className="project-page">
-      <h1 className="center-title">PORTFOLIO</h1>
-
-      <div className="grid">
-        {categories.map((cat) => {
-          const categoryImages = galleryData[cat.slug] || [];
-          const firstImg = categoryImages.length > 0 ? categoryImages[0].src : null;
-          
-
-          return (
-            <Link
-              to={`/portfolio/${cat.slug}`}
-              key={cat.slug}
-              className="project"
-            >
-              {firstImg ? (
-                <img
-                  src={firstImg}
-                  alt={cat.title}
-                  className="project-thumb"
-                />
-              ) : (
-                <div className="project-thumb-fallback">{cat.title}</div>
-              )}
-
-              <div className="project-title">{cat.title}</div>
-            </Link>
-          );
-        })}
+    <section className="portfolio">
+      <div className="portfolio-grid">
+        {categories.map((c) => (
+          <Link key={c.slug} to={`/portfolio/${c.slug}`} className="portfolio-card">
+            <div className="thumb">
+              <img src={c.img} alt={c.title} />
+            </div>
+            <h2 className="card-title">{c.title}</h2>
+          </Link>
+        ))}
       </div>
-    </main>
+    </section>
   );
 }

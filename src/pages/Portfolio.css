@@ -1,0 +1,81 @@
+/* ===============================
+   STYLE GLOBAL PORTFOLIO
+   =============================== */
+
+.portfolio {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #fff;
+  padding: 80px 40px;
+}
+
+/* ===============================
+   GRILLE DES CATÉGORIES
+   =============================== */
+.portfolio-grid {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 80px;
+  flex-wrap: wrap;
+  max-width: 1400px;
+  margin: 0 auto;
+  opacity: 0;
+  transform: translateY(40px);
+  animation: fadeUp 3s ease forwards;
+}
+
+/* Animation d’apparition fluide */
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===============================
+   CARTES DES CATÉGORIES
+   =============================== */
+.portfolio-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: #000;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.portfolio-card:hover {
+  transform: translateY(-10px);
+}
+
+/* IMAGES DES CATÉGORIES */
+.thumb img {
+  width: 360px; /* 🔥 taille augmentée */
+  height: 500px; /* 🔥 hauteur augmentée */
+  object-fit: cover;
+  border-radius: 14px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.thumb img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+/* ===============================
+   TITRES DES CATÉGORIES
+   =============================== */
+.card-title {
+  margin-top: 18px;
+  font-family: "Poppins", sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 1.3px;
+  text-transform: uppercase;
+  color: #111;
+}

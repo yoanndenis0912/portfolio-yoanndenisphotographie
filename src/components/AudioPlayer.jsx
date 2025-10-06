@@ -1,43 +1,33 @@
-import { useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import "./AudioPlayer.css";
 
-const AUDIO_SRC = "/audio/relaxing-piano-310597.mp3";
+const AUDIO_SRC = "/audio/relaxing-piano-310597.mp3"; // ✅ ton fichier dans public/audio/
 
 export default function AudioPlayer() {
   const audioRef = useRef(null);
+  React.useEffect(() => {
+  if (audioRef.current) {
+    audioRef.current.volume = 0.5; // volume à 50%
+  }
+}, []);
   const [isPlaying, setIsPlaying] = useState(false);
 
-  const fadeAudio = (targetVol, duration = 1000) => {
+  const togglePlayPause = async () => {
     const audio = audioRef.current;
-    if (!audio) return;
-    const step = (targetVol - audio.volume) / (duration / 50);
-    const interval = setInterval(() => {
-      let newVol = audio.volume + step;
-      if ((step > 0 && newVol >= targetVol) || (step < 0 && newVol <= targetVol)) {
-        newVol = targetVol;
-        clearInterval(interval);
-        if (newVol === 0 && !isPlaying) audio.pause();
-      }
-      audio.volume = Math.max(0, Math.min(1, newVol));
-    }, 50);
-  };
 
-  const togglePlay = async () => {
-    const audio = audioRef.current;
     if (!audio) return;
 
     if (isPlaying) {
-      fadeAudio(0);
+      audio.pause();
       setIsPlaying(false);
     } else {
       try {
-        audio.volume = 0;
-        await audio.play();
-        fadeAudio(0.3);
-        setIsPlaying(true);
-      } catch (e) {
-        console.warn("Autoplay bloqué, clic requis :", e);
-      }
+  await audio.play();
+} catch (err) {
+  console.warn("Lecture bloquée :", err);
+  alert("Cliquez sur le bouton pour activer la musique 🎵");
+}
+      setIsPlaying(true);
     }
   };
 
@@ -45,10 +35,10 @@ export default function AudioPlayer() {
     <div className="audio-container">
       <audio ref={audioRef} src={AUDIO_SRC} preload="auto" loop />
       <button
-        onClick={togglePlay}
+        onClick={togglePlayPause}
         className={`audio-btn ${isPlaying ? "playing" : "paused"}`}
       >
-        {isPlaying ? "⏸︎" : "▶︎"}
+        {isPlaying ? "⏸️" : "▶️ Musique"}
       </button>
     </div>
   );

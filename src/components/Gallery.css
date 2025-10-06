@@ -1,0 +1,134 @@
+/* Patchwork masonry grid */
+.gallery-grid {
+  column-count: 4; /* nombre de colonnes sur desktop */
+  column-gap: 0; /* collage total */
+  width: 100%;
+}
+
+@media (max-width: 1200px) {
+  .gallery-grid {
+    column-count: 3;
+  }
+}
+
+@media (max-width: 800px) {
+  .gallery-grid {
+    column-count: 2;
+  }
+}
+
+@media (max-width: 500px) {
+  .gallery-grid {
+    column-count: 1;
+  }
+}
+
+.gallery-thumb {
+  width: 100%;
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  break-inside: avoid; /* empêche les coupures entre colonnes */
+  vertical-align: top; /* supprime les petits espaces verticaux */
+}
+
+.gallery-thumb img {
+  width: 100%;
+  display: block; /* supprime les espaces blancs entre les images */
+  margin: 0;
+  padding: 0;
+}
+
+.gallery-thumb:hover {
+  transform: scale(1.02);
+  opacity: 0.9;
+}
+
+/* Carrousel plein écran */
+.carousel-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.carousel-image {
+  max-width: 90%;
+  max-height: 80%;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+/* Boutons navigation */
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 3rem;
+  color: white;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0 20px;
+  z-index: 1010;
+  transition: color 0.3s ease;
+}
+
+.nav-btn:hover {
+  color: #f5a623;
+}
+
+.nav-btn.left {
+  left: 20px;
+}
+
+.nav-btn.right {
+  right: 20px;
+}
+
+.carousel-image {
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
+  transition: opacity 1s ease-in-out;
+}
+
+.carousel-overlay {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Effet d'apparition en fondu / slide-up */
+.gallery-thumb {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.gallery-thumb.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Zoom subtil au survol */
+.gallery-thumb:hover {
+  transform: scale(1.03);
+  transition: transform 0.3s ease;
+  z-index: 2;
+}
