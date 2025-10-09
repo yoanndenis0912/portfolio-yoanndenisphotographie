@@ -1,88 +1,86 @@
 .hero {
-  height: 100vh;
-  width: 100vw;
-  background-image: url("/photo/accueil.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
   position: relative;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  opacity: 0;
-  animation: fadeInHero 1.8s ease-in-out forwards;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: url("/photo/accueil.jpg") center center / cover no-repeat;
+  animation: zoomIn 25s ease-in-out infinite alternate;
 }
 
-/* ✨ Animation d'apparition */
-@keyframes fadeInHero {
-  from {
-    opacity: 0;
-    transform: scale(1.03);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-/* 🧭 Contenu parfaitement centré */
 .hero-content {
   text-align: center;
-  color: #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  color: white;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+  animation: fadeIn 1s ease forwards;
 }
 
-/* Titre principal */
 .hero-title {
-  font-family: "Poppins", sans-serif;
+  font-size: 3.5rem;
   font-weight: 700;
-  font-size: clamp(44px, 6vw, 60px);
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  margin: 0;
-  line-height: 1.1;
-  color: #fff;
-}
-
-/* Sous-titre */
-.hero-subtitle {
-  font-family: "Poppins", sans-serif;
-  font-weight: 400;
-  font-size: clamp(14px, 1.8vw, 18px);
-  text-transform: uppercase;
   letter-spacing: 2px;
-  opacity: 0.9;
-  margin-top: 10px;
-  color: #fff;
+  margin: 0;
+  opacity: 0;
+  animation: fadeInUp 1.8s ease forwards;
 }
 
-/* 🔘 Bouton stylisé */
+.hero-subtitle {
+  font-size: 1.2rem;
+  font-weight: 400;
+  letter-spacing: 3px;
+  margin: 10px 0 30px;
+  opacity: 0;
+  animation: fadeInUp 1.8s ease forwards;
+  animation-delay: 0.3s;
+}
+
 .hero-button {
-  margin-top: 20px;
-  padding: 10px 22px;
-  border: 1px solid #fff;
-  border-radius: 4px;
-  color: #fff;
-  background: transparent;
-  font-family: "Poppins", sans-serif;
-  font-size: 14px;
+  display: inline-block;
+  padding: 10px 25px;
+  border: 1.5px solid white;
+  border-radius: 3px;
+  color: white;
+  text-decoration: none;
+  font-weight: 400;
   letter-spacing: 1px;
-  text-transform: uppercase;
-  cursor: pointer;
   transition: all 0.3s ease;
-  text-decoration: none; /* enlève le soulignement */
+  opacity: 0;
+  animation: fadeInUp 1.8s ease forwards;
+  animation-delay: 0.8s;
 }
 
 .hero-button:hover {
-  background-color: #fff;
-  color: #000;
-  transform: scale(1.05);
+  background: white;
+  color: black;
 }
 
+/* ✨ Animations */
+@keyframes fadeInUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* 🎥 Zoom doux du fond */
+@keyframes zoomIn {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.05);
+  }
+}

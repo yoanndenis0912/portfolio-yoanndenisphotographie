@@ -1,157 +1,148 @@
-.contact {
-  background-color: #fff;
-  color: #fff;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 40px 20px;
+/* --- STRUCTURE GLOBALE --- */
+body {
+  background-color: #fff !important;
 }
 
-.contact-title {
-  font-family: "Poppins", sans-serif;
-  font-size: 2rem;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  margin-bottom: 40px;
-}
-
-.contact-form {
+.contact-page {
+  padding: 6rem 2rem 2rem 2rem;
+  max-width: 700px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 2rem;
+  background: transparent;
+  transform: translateY(10%);
+}
+
+/* --- TITRES ET BLOCS --- */
+.about {
+  margin-bottom: 2rem;
+  text-align: center;
+  color: black;
+}
+
+.separator {
+  margin: 1rem 0;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #000;
+}
+
+/* --- FORMULAIRE --- */
+.contact-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
   width: 100%;
   max-width: 400px;
+  margin: 0 auto;
 }
 
 .contact-form label {
-  font-size: 0.9rem;
-  letter-spacing: 1px;
+  font-weight: 500;
+  color: #000;
 }
 
 .contact-form input,
+.contact-form select,
 .contact-form textarea {
-  background: transparent;
-  border: 1px solid #666;
-  color: #fff;
-  padding: 10px;
-  border-radius: 4px;
-  font-family: "Poppins", sans-serif;
-  font-size: 0.95rem;
-  transition: border-color 0.3s ease;
-}
-
-.contact-form input:focus,
-.contact-form textarea:focus {
-  outline: none;
-  border-color: #fff;
-}
-
-.contact-form button {
-  background: transparent;
-  border: 1px solid #fff;
-  color: #fff;
-  padding: 10px 0;
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  width: 100%;
   font-size: 1rem;
-  letter-spacing: 1px;
-  cursor: pointer;
-  border-radius: 4px;
-  transition: all 0.3s ease;
-}
-
-.contact-form button:hover {
-  background: #fff;
   color: #000;
-}
-
-.contact-page {
-  color: #000 !important;
-}
-
-/* Force la couleur du texte et des placeholders en noir */
-.contact-page,
-.contact-page input,
-.contact-page textarea,
-.contact-page button {
-  color: #000 !important;
-}
-
-/* Pour les textes d’indication dans les champs */
-.contact-page input::placeholder,
-.contact-page textarea::placeholder {
-  color: #000 !important;
-  opacity: 1;
-}
-
-/* Couleur de fond */
-.contact-page {
   background-color: #fff;
-  color: #000;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* Champs et textes */
-.contact-form input,
-.contact-form textarea,
-.contact-form button {
-  color: #000;
-  border: 1px solid #000;
 }
 
 .contact-form input::placeholder,
 .contact-form textarea::placeholder {
-  color: #000;
-  opacity: 1;
+  color: #888;
 }
 
+/* --- BOUTON ENVOYER --- */
 .contact-form button {
-  background: #000;
-  color: #fff;
+  background-color: #000 !important; /* fond noir */
+  color: #fff !important; /* texte blanc forcé */
   border: none;
-  padding: 8px 16px;
+  padding: 0.9rem 1.4rem;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background 0.3s;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  width: 100%;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
-.contact-form button:hover {
-  background: #333;
-}
-
-/* Force la couleur noire pour tout le texte de la page contact */
-.contact-page,
-.contact-page * {
-  color: #000 !important;
-}
-
-/* Pour être sûr que les placeholders soient noirs */
-.contact-page input::placeholder,
-.contact-page textarea::placeholder {
-  color: #000 !important;
-  opacity: 1;
-}
-
-.contact-form button {
-  background-color: #000;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  font-family: inherit;
-  font-size: 14px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-/* Effet hover : plus doux et pro */
+/* Effet au survol */
 .contact-form button:hover {
   background-color: #333;
   transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.25);
+  color: #fff;
 }
 
-/* Petit effet de "clic" */
+/* Effet au clic */
 .contact-form button:active {
-  transform: translateY(0);
+  transform: scale(0.97);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+/* --- RESPONSIVE --- */
+edia @m(max-width: 600px) {
+  .contact-page {
+    padding: 4rem 1rem 2rem 1rem;
+  }
+
+  .contact-form form {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Ajuste les marges globales */
+  .contact-page {
+    padding: 4rem 1rem 2rem 1rem;
+  }
+
+  /* Formulaire pleine largeur */
+  .contact-form form {
+    width: 100%;
+    max-width: none;
+  }
+
+  /* Texte centré pour plus de lisibilité */
+  .about,
+  .merci-content {
+    text-align: center;
+  }
+
+  /* Bouton un peu plus grand pour le tactile */
+  .contact-form button,
+  .back-home {
+    padding: 1rem 1.5rem;
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Optimise la taille du texte sur petits écrans */
+  h1, h2 {
+    font-size: 1.5rem;
+  }
+
+  p {
+    font-size: 0.95rem;
+  }
+
+  /* Espacement vertical plus compact */
+  .contact-page {
+    padding-top: 3rem;
+  }
 }

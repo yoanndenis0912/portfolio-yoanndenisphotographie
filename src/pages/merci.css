@@ -1,0 +1,70 @@
+.merci-page {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+  overflow: hidden;
+}
+
+/* ✅ Image de fond floutée */
+.merci-page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("/photo/accueil.jpg"); /* 📸 ton image de fond */
+  background-size: cover;
+  background-position: center;
+  filter: blur(10px) brightness(0.6);
+  transform: scale(1.05);
+  z-index: 0;
+}
+
+/* ✅ Superposition semi-transparente pour adoucir le rendu */
+.merci-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(116, 116, 116, 0.4);
+  z-index: 1;
+}
+
+/* ✅ Contenu au-dessus du flou */
+.merci-content {
+  position: relative;
+  z-index: 2;
+  max-width: 600px;
+  padding: 2rem;
+  backdrop-filter: blur(5px);
+  border-radius: 12px;
+  background-color: rgba(0, 0, 0, 0.25);
+}
+
+.merci-content h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  letter-spacing: 1px;
+}
+
+.merci-content p {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.back-home {
+  display: inline-block;
+  background-color: #fff;
+  color: #000;
+  text-decoration: none;
+  padding: 0.8rem 1.4rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  font-weight: 600;
+}
+
+.back-home:hover {
+  background-color: #f1f1f1;
+  transform: translateY(-2px);
+}

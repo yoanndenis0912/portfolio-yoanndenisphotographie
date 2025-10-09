@@ -1,4 +1,13 @@
+import "./Lightbox.css";
 import { useEffect } from "react";
+
+useEffect(() => {
+  if (isOpen) {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "";
+  }
+}, [isOpen]);
 
 export default function Lightbox({ images = [], currentIndex, onClose, onPrev, onNext }) {
   const isOpen = currentIndex !== null && currentIndex >= 0;

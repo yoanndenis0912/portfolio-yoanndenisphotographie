@@ -4,154 +4,34 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   padding: 80px 40px;
   background: #fff;
 }
 
 .portfolio-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 60px;
-  justify-items: center;
-  width: 100%;
-  max-width: 1400px;
-}
-
-.portfolio-card {
-  text-align: center;
-  text-decoration: none;
-  color: #000;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.portfolio-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-}
-
-.portfolio-thumb {
-  width: 100%;
-  max-width: 340px;
-  height: 460px;
-  overflow: hidden;
-  border-radius: 10px;
-}
-
-.portfolio-thumb img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.portfolio-title {
-  margin-top: 12px;
-  font-size: 1.1rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-/* Centrage et style harmonisé */
-.portfolio {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  min-height: 100vh;
-  background: #fff;
-}
-
-.portfolio-grid {
-  display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 50px;
-  width: 80%;
-  max-width: 1200px;
+  gap: 90px; /* espace entre les catégories */
+  width: 100%;
+  max-width: 2000px;
   justify-items: center;
 }
 
+/* === CARTES DU PORTFOLIO === */
 .portfolio-card {
   text-align: center;
   text-decoration: none;
   color: inherit;
-  font-family: "Poppins", sans-serif; /* même police que navbar */
-  transition: transform 0.3s ease;
-}
-
-.portfolio-card:hover {
-  transform: scale(1.03);
-}
-
-.thumb img {
-  width: 100%;
-  border-radius: 10px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-}
-
-.card-title {
-  margin-top: 12px;
-  font-weight: 400;
-  text-transform: uppercase;
-  font-size: 1rem;
-  color: #222;
-}
-
-/* === Correction esthétique des cartes === */
-.portfolio-card {
-  text-align: center;
-  text-decoration: none;
-  color: inherit;
-  font-family: "Poppins", sans-serif;
+  font-family: "Poppins", sans-serif; /* même police que la navbar */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  background: transparent; /* ❌ enlève le fond blanc */
-  border-radius: 12px; /* ✅ coins arrondis */
-}
-
-.portfolio-card:hover {
-  transform: scale(1.03);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15); /* ✅ effet doux au survol */
-}
-
-.thumb img {
-  width: 100%;
-  border-radius: 12px; /* ✅ même arrondi que la carte */
-  box-shadow: none; /* enlève tout contour blanc résiduel */
-  display: block;
-}
-
-/* === Effet de fondu et éclaircissement des images au survol === */
-.thumb img {
-  width: 100%;
-  border-radius: 12px;
-  box-shadow: none;
-  display: block;
-  transition: transform 0.4s ease, filter 0.4s ease, opacity 0.4s ease;
-}
-
-.thumb img:hover {
-  transform: scale(1.05); /* léger zoom */
-  filter: brightness(1.15); /* éclaircissement subtil */
-  opacity: 0.9; /* effet fondu léger */
-}
-
-/* === Animation d’apparition en fondu + montée === */
-@keyframes fadeSlideUp {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.portfolio-card {
+  background: transparent;
+  border-radius: 0;
   animation: fadeSlideUp 1s ease forwards;
   opacity: 0;
 }
 
+/* Animation en décalé */
 .portfolio-card:nth-child(1) {
   animation-delay: 0.3s;
 }
@@ -160,4 +40,117 @@
 }
 .portfolio-card:nth-child(3) {
   animation-delay: 0.9s;
+}
+
+/* Effet au survol */
+.portfolio-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* === MINIATURES HARMONISÉES === */
+.portfolio-thumb {
+  width: 100%;
+  max-width: 320px; /* réduit légèrement la largeur */
+  aspect-ratio: 3 / 4; /* ✅ garde un format photo vertical équilibré */
+  overflow: hidden;
+  border-radius: 0;
+  background: transparent;
+}
+
+.portfolio-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0;
+  box-shadow: none;
+  display: block;
+  transition: transform 0.4s ease, filter 0.4s ease, opacity 0.4s ease;
+}
+
+/* Effet de survol sur l’image */
+.portfolio-thumb img:hover {
+  transform: scale(1.05);
+  filter: brightness(1.15);
+  opacity: 0.9;
+}
+
+/* === TITRES DES CARTES === */
+.portfolio-title,
+.card-title {
+  margin-top: 12px;
+  font-size: 1.1rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  background: none !important;
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  color: #000 !important;
+  font-family: "Poppins", sans-serif !important;
+}
+
+/* === Animation d’apparition en fondu + montée === */
+@keyframes fadeSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+    background: transparent;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    background: transparent;
+  }
+}
+
+/* === Nettoyage global des fonds indésirables === */
+.portfolio-card,
+.portfolio-thumb,
+.portfolio-title,
+.card-title,
+.portfolio-card::before,
+.portfolio-card::after,
+.portfolio-thumb::before,
+.portfolio-thumb::after {
+  background: transparent !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+/* === Miniatures plus petites et harmonieuses (override) === */
+.portfolio-grid {
+  /* permet plus de colonnes, donc des cartes naturellement plus petites */
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)) !important;
+  gap: 64px !important;
+}
+
+/* le conteneur des vignettes */
+.portfolio-thumb,
+.thumb {
+  width: 100% !important;
+  max-width: 560px !important;   /* ↓ largeur max réduite */
+  height: px !important;      /* ↓ hauteur réduite */
+  overflow: hidden !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+}
+
+/* l'image remplit proprement le conteneur réduit */
+.portfolio-thumb img,
+.thumb img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+}
+
+/* Mobile : encore un poil plus compact */
+@media (max-width: 768px) {
+  .portfolio-thumb,
+  .thumb {
+    max-width: 220px !important;
+    height: 300px !important;
+  }
 }

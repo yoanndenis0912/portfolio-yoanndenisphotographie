@@ -1,18 +1,15 @@
+import React from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
+
 import Home from "../pages/Home";
 import Portfolio from "../pages/Portfolio";
-import Category from "../pages/Category.jsx";
+import Category from "../pages/Category";
 import Contact from "../pages/Contact";
+import Merci from "../pages/Merci"; // ✅ ajout de la page Merci
+import FadeWrapper from "../components/FadeWrapper";
 
-const pageTransition = {
-  initial: { opacity: 0 },
-  animate: { opacity: 1 },
-  exit: { opacity: 0 },
-  transition: { duration: 0.8, ease: "easeInOut" },
-};
-
-function AnimatedRoutes() {
+export default function AnimatedRoutes() {
   const location = useLocation();
 
   return (
@@ -21,39 +18,53 @@ function AnimatedRoutes() {
         <Route
           path="/"
           element={
-            <motion.div {...pageTransition}>
+            <FadeWrapper>
               <Home />
-            </motion.div>
+            </FadeWrapper>
           }
         />
         <Route
           path="/portfolio"
           element={
-            <motion.div {...pageTransition}>
+            <FadeWrapper>
               <Portfolio />
-            </motion.div>
+            </FadeWrapper>
           }
         />
         <Route
-  path="/portfolio/:slug"
-  element={
-    <motion.div {...pageTransition}>
-      <Category />
-    </motion.div>
-  }
-/>
-        /
+          path="/portfolio/:slug"
+          element={
+            <FadeWrapper>
+              <Category />
+            </FadeWrapper>
+          }
+        />
         <Route
           path="/contact"
           element={
-            <motion.div {...pageTransition}>
+            <FadeWrapper>
               <Contact />
-            </motion.div>
+            </FadeWrapper>
+          }
+        />
+        {/* ✅ Nouvelle page de confirmation */}
+        <Route
+          path="/merci"
+          element={
+            <FadeWrapper>
+              <Merci />
+            </FadeWrapper>
+          }
+        />
+        <Route
+          path="*"
+          element={
+            <FadeWrapper>
+              <Home />
+            </FadeWrapper>
           }
         />
       </Routes>
     </AnimatePresence>
   );
 }
-
-export default AnimatedRoutes;

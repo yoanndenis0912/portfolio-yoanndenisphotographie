@@ -6,7 +6,7 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  gap: 60px;
+  gap: 80px;
   padding: 18px 0;
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(8px);
@@ -28,6 +28,6 @@
 
 .navbar a:hover,
 .navbar a.active {
-  color: #c75d3c; /* accent doux */
+  color: #000000; /* accent doux */
   font-weight: 500;
 }

@@ -12,6 +12,7 @@ export default function Category() {
         "/photo/portrait/portrait1.jpg",
         "/photo/portrait/portrait2.jpg",
         "/photo/portrait/portrait3.jpg",
+        "/photo/portrait/portrait4.jpg",
       ],
     },
     food: {
@@ -28,6 +29,10 @@ export default function Category() {
         "/photo/editorial/editorial1.jpg",
         "/photo/editorial/editorial2.jpg",
         "/photo/editorial/editorial3.jpg",
+        "/photo/editorial/editorial4.jpg",
+        "/photo/editorial/editorial5.jpg",
+        "/photo/editorial/editorial6.jpg",
+        "/photo/editorial/editorial7.jpg",
       ],
     },
   };
